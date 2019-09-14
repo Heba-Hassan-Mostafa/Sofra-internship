@@ -13,7 +13,7 @@ class CreatePaymentsTable extends Migration {
 			$table->integer('restaurant_id');
 			$table->decimal('paid');
 			$table->decimal('remaining');
-			$table->decimal('app_commission');
+			//$table->decimal('app_commission');
 			$table->string('notes');
 		});
 	}

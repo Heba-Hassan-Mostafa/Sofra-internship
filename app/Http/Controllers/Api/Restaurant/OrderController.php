@@ -228,18 +228,15 @@ class OrderController extends Controller
 
     public function commission(Request $request)
     {
-        $count=$request->user()->orders()->where('status','accepted')->where(function ($q){
-            $q->where('status','delivered');
-        })->count();
-        $total = $request->user()->orders()->where('status','accepted')->where(function($q){
-            $q->where('status','delivered');
-        })->sum('total_price');
-        $commissions = $request->user()->orders()->where('status','accepted')->where(function($q){
-            $q->where('status','delivered');
-        })->sum('commission');
+        $count = $request->user()->orders()->where('status','delivered')->count();
+        $restaurant_sales=$request->user()->orders()->where('status','delivered')->sum('total_price');
+        $app_commission = $request->user()->orders()->where('status','delivered')->sum('commission');
+        $payments = $request->user()->payments()->sum('paid');
+        $restaurant_payments = $request->user()->payments()->pluck('paid')->first();
+        $rest_of_commissions = $app_commission - $restaurant_payments ;
         $commission = settings()->commission;
-        return apiResponse(1,'success',compact('count','total','commissions','commission'));
-
+        return apiResponse(1, 'success', compact('count','restaurant_sales', 'app_commission', 'restaurant_payments'
+            , 'rest_of_commissions', 'commission'));
 
     }
 

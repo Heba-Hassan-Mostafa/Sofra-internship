@@ -81,7 +81,6 @@ class OrderController extends Controller
 
             $total=$price + $delivery_price;
            $commission= settings()->commission * $price;
-           // $remain=$total- settings()->commission;
 
             $update=$order->update([
 
@@ -89,7 +88,6 @@ class OrderController extends Controller
                 'total_price'=>$total,
                 'delivery_price'=>$delivery_price,
                 'commission'    => $commission,
-               // 'remain'           => $remain,
             ]);
 
             // Create Notifications

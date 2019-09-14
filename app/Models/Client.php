@@ -11,7 +11,7 @@ class Client extends Model
     public $timestamps = true;
 
 
-    protected $fillable =['name','email','password','phone','district_id','api_token','pin_code','activated'];
+    protected $fillable =['name','email','password','phone','address','district_id','api_token','pin_code','activated'];
 
     protected $hidden = [
         'password', 'api_token',

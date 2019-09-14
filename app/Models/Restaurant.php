@@ -13,6 +13,9 @@ class Restaurant extends Model
     protected $fillable =['name','email','password','phone','district_id','min_price','delivery_price','whatsapp_num',
         'image','status','api_token','pin_code','activated'];
 
+    protected $appends = ['image_url'];
+
+
     protected $hidden = [
         'password', 'api_token',
     ];
@@ -69,6 +72,28 @@ class Restaurant extends Model
     public function comments()
     {
         return $this->hasMany('App\Models\Comment');
+    }
+
+
+
+
+
+    public function getTotalCommissionsAttribute($value)
+    {
+        $commissions = $this->orders()->where('status','delivered')->sum('commission');
+        return $commissions;
+    }
+    public function getTotalPaymentsAttribute($value)
+    {
+        $payments = $this->payments()->sum('paid');
+        return $payments;
+    }
+
+
+    public function getTotalOrdersAmountAttribute($value)
+    {
+        $commissions = $this->orders()->where('status','delivered')->sum('total_price');
+        return $commissions;
     }
 
 

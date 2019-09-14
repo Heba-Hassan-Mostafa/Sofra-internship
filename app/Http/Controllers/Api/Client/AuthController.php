@@ -28,6 +28,7 @@ class AuthController extends Controller
             'email' => 'required|unique:clients',
             'password' => 'required|confirmed',
             'phone' => 'required',
+            'address' => 'required',
             'district_id' => 'required',
         ]);
 

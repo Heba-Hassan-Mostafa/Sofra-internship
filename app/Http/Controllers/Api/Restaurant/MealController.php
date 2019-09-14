@@ -46,7 +46,7 @@ class MealController extends Controller
             $extension = $image->getClientOriginalExtension();    // getting image extension
             $name = time() . '' . rand(11111, 99999) . '.' . $extension;    // renaming image
             $image->move($destinationPath, $name);    // uploading file to given path
-            $meal->update(['image' => 'uploads/items/' . $name]);
+            $meal->update(['image' => 'uploads/meals/' . $name]);
         }
 
         return apiResponse(1, 'Meal Added Successfully', $meal);

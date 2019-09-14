@@ -12,6 +12,8 @@ class Meal extends Model
 
     protected $fillable=['name','image','short_description','price','discount_price','preparation_time','restaurant_id'];
 
+    protected $appends = ['image_url'];
+
     public function orders()
     {
         return $this->belongsToMany('App\Models\Order');
