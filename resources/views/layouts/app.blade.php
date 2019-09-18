@@ -163,7 +163,13 @@
             </a>
         </li>
 
-        <li class="nav-item">
+                    <li class="nav-item">
+                        <a href="{{url(route('meal.index'))}}" class="nav-link">
+                            <i class="fas fa-utensils"></i><p>Meals</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
             <a href="{{url(route('payments.index'))}}" class="nav-link">
                 <i class="fas fa-many"></i><p>Restaurant Payments</p>
             </a>

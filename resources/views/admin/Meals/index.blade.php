@@ -26,13 +26,26 @@
 
         <div class="card-body">
             <div>
-                <a href="{{url(route('restaurant.meal.create',$restaurant->id))}}" class="btn btn-primary">
+                <a href="{{url(route('meal.create'))}}" class="btn btn-primary">
                     <i class="fa fa-plus"></i> New Meal </a>
             </div>
             <br>
 
+            <div class="col-md-4" style="float: right">
+                <form action="{{url(route('meal.index'))}}" method="get" class="text-right">
+                    <div class="input-group">
+                        <input type="search" name="search" class="form-control" value="{{request()->search}}">
+                        <button class="btn btn-primary input-group-prepend">Search</button>
+                    </div>
+                </form>
 
-                <!-- Start Table -->
+            </div>
+            <br>
+            <br>
+
+
+
+            <!-- Start Table -->
                 @if (count($meals))
 
                     <div class="table-responsive">
@@ -42,6 +55,7 @@
                             <tr>
 
                                 <th>ID</th>
+                                <th>Restaurant</th>
                                 <th>Name</th>
                                 <th>Description</th>
                                 <th>price</th>
@@ -57,21 +71,22 @@
                             @foreach($meals as $meal)
                                 <tr>
                             <td>{{$meal->id}}</td>
+                            <td>{{optional($meal->restaurant)->name}}</td>
                             <td>{{$meal->name}}</td>
                             <td>{{$meal->short_description}}</td>
                             <td>{{$meal->price}}</td>
                             <td>
-                    <img height="50px" width="50px" src="{{url('/'.$meal->image.'/')}}">
+                    <img height="50px" width="50px" src="{{url('image/'.$meal->image.'/')}}">
                             </td>
                             <td>{{$meal->discount_price}}</td>
                             <td>{{$meal->preparation_time}}</td>
 
         <td>
-            <a href="{{url(route('restaurant.meal.edit',[$restaurant->restaurant_id, $meal->id]))}}" class="btn btn-success">
+            <a href="{{url(route('meal.edit', $meal->id))}}" class="btn btn-success">
                 <i class="fa fa-edit"></i>Edit</a>
         </td>
                         <td>
-                            <form action="{{(route('restaurant.meal.destroy', [$meal->restaurant_id, $meal->id]))}}" method="post">
+                            <form action="{{(route('meal.destroy', $meal->id))}}" method="post">
                                 @method('DELETE')
                                 @csrf
                                 <button type="submit" class="btn btn-danger">

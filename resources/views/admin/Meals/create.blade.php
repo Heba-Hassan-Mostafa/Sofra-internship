@@ -1,5 +1,7 @@
 @extends('layouts.app')
 @inject('model','App\Models\Meal')
+@inject('restaurant','App\Models\Restaurant')
+
 @section('page_header')
     Meals
 @endsection
@@ -26,8 +28,9 @@
             <div class="card-body">
 
             {!! Form::model($model,[
-            'action'=>['WebController\RestaurantMealController@store',$restaurant]
-            ]) !!}
+            'action'=>['WebController\MealController@store'],
+             'files' => true
+             ]) !!}
                 @include('admin.meals.form')
             @include('admin.partial.validation-errors')
 

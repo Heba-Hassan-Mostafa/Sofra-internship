@@ -37,7 +37,7 @@ Route::group(['middleware'=>['auth','auto-check-permission'] , 'prefix' => 'admi
     Route::get('restaurant/activate/{id}', 'WebController\RestaurantController@activate')->name('restaurant.activate');
     Route::get('restaurant/daActivate/{id}', 'WebController\RestaurantController@deActivate')->name('restaurant.deactivate');
     Route::resource('restaurant', 'WebController\RestaurantController');
-    Route::resource('restaurant.meal', 'WebController\RestaurantMealController');
+    Route::resource('meal', 'WebController\MealController');
     Route::resource('payments', 'WebController\PaymentsController');
     Route::resource('offer', 'WebController\OfferController');
     Route::resource('contact', 'WebController\ContactController');

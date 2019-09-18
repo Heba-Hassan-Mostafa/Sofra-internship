@@ -67,7 +67,7 @@
                                 <th>Activation</th>
                                 <th>Activation-State</th>
                                 <th>Delete</th>
-                                <th>Meals</th>
+{{--                                <th>Meals</th>--}}
 
                             </tr>
 
@@ -113,9 +113,9 @@
         </form>
 
     </td>
-                <td>
-                    <a href="{{url(route('restaurant.meal.index',$restaurant->id))}}" class="btn btn-primary">Meals</a>
-                </td>
+{{--                <td>--}}
+{{--                    <a href="{{url(route('restaurant.meal.index',$restaurant->id))}}" class="btn btn-primary">Meals</a>--}}
+{{--                </td>--}}
 
 
 

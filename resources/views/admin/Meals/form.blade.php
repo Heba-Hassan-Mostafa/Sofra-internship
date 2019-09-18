@@ -1,4 +1,21 @@
 
+@inject('restaurant','App\Models\Restaurant')
+
+
+<div class="form-group">
+    <label for="restaurants"> Restaurant </label>
+    <select class="form-control form-control-lg" id="restaurants" name="restaurant_id" placeholder=" select ">
+        <option disabled selected value> </option>
+
+        @foreach ($restaurants as $restaurant)
+            <option value="{{$restaurant->id}}">{{$restaurant->name }}</option>
+        @endforeach
+    </select>
+    <span class=" text-danger"> {{ $errors->first('restaurant_id') }}</span>
+
+</div>
+
+
 <div class="form-group">
     <label for="name">Name</label>
     {!! Form::text('name',null,[
@@ -16,14 +33,14 @@
 
 <div class="form-group">
     <label for="discount_price">Discount</label>
-    {!! Form::text('discount_price',null,[
+    {!! Form::number('discount_price',null,[
     'class'=>'form-control'
     ]) !!}
 </div>
 
 <div class="form-group">
     <label for="price">price</label>
-    {!! Form::text('price',null,[
+    {!! Form::number('price',null,[
     'class'=>'form-control'
     ]) !!}
 </div>
